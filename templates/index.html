@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detection Verification MVP</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg nav-glass custom-navbar fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-white" href="/">
+      <i class="bi bi-shield-check"></i> FakeNews Verifier
+    </a>
+    <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-toggle="target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="/">Detector</a></li>
+        <li class="nav-item"><a class="nav-link" href="/dashboard">Admin Dashboard</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container main-content pt-5 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8 text-center text-white mb-4">
+            <h1 class="display-5 fw-bold mb-3 mt-3">Advanced Fake News Detector</h1>
+            <p class="lead text-white-50">Powered by AI and Fact-Checked via Google Fact Check API</p>
+        </div>
+        
+        <div class="col-lg-10 col-xl-8">
+            <div class="card glass-card p-4 mb-5">
+                <form id="analyze-form">
+                    <div class="mb-3">
+                        <label for="article-text" class="form-label text-white fw-semibold mb-2">News Article Text:</label>
+                        <textarea class="form-control glass-input" id="article-text" rows="6" placeholder="Paste article text here..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 gradient-btn py-2 fw-bold" id="analyze-btn">
+                        <span id="btn-text">Analyze Article</span>
+                        <div class="spinner-border spinner-border-sm text-light d-none" id="btn-spinner" role="status"></div>
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Error State -->
+            <div id="error-alert" class="alert alert-danger d-none fade show" role="alert"></div>
+
+            <!-- Results Section -->
+            <div id="results-section" class="d-none animate-up">
+                
+                <!-- Prediction Card -->
+                <div class="card glass-card result-card mb-4" id="prediction-card">
+                    <div class="card-body text-center py-4">
+                        <h3 class="fw-bold mb-1">Prediction: <span id="verdict-label" class="badge"></span></h3>
+                        <p class="text-white-50 mb-0">Confidence Score: <strong id="confidence-score" class="text-white"></strong></p>
+                    </div>
+                </div>
+
+                <!-- Claims & Explainability -->
+                <h4 class="text-white fw-bold mb-3 mt-5">Explainability & Claims Extraction</h4>
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-4">
+                        <div class="accordion" id="claims-accordion">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fact Checks Table -->
+                <h4 class="text-white fw-bold mb-3 mt-5">Fact-Check Verification</h4>
+                <div class="card glass-card mb-5">
+                    <div class="card-body p-0 table-responsive border-0 rounded">
+                        <table class="table table-dark table-hover mb-0 bg-transparent text-white">
+                            <thead class="table-glass-header">
+                                <tr>
+                                    <th>Claim</th>
+                                    <th>Verdict</th>
+                                    <th>Publisher</th>
+                                    <th>Source</th>
+                                </tr>
+                            </thead>
+                            <tbody id="factchecks-tbody">
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

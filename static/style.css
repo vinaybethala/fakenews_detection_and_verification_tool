@@ -1,0 +1,153 @@
+:root {
+    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --bg-dark: #0f172a;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.15), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.15), transparent 25%);
+    background-attachment: fixed;
+    color: #f8fafc;
+    min-height: 100vh;
+}
+
+/* Glassmorphism Classes */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.nav-glass {
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.glass-input {
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: #fff !important;
+    border-radius: 8px;
+    resize: none;
+}
+.glass-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25) !important;
+    border-color: #6366f1 !important;
+}
+.glass-input::placeholder {
+    color: #64748b !important;
+}
+
+/* Buttons */
+.gradient-btn {
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.gradient-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+}
+
+/* Utilities */
+.animate-up {
+    animation: slideUp 0.5s ease forwards;
+}
+.delay-1 { animation-delay: 0.1s; }
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Highlights */
+.highlight-suspicious {
+    background-color: rgba(234, 179, 8, 0.3);
+    color: #fde047;
+    padding: 0 4px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Prediction Badges */
+.badge-fake {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    padding: 8px 16px;
+    font-size: 1.25rem;
+}
+.badge-real {
+    background-color: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.5);
+    padding: 8px 16px;
+    font-size: 1.25rem;
+}
+
+/* Table */
+.table-glass-header th {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #94a3b8 !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+    font-weight: 600;
+}
+.table-dark {
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: rgba(255,255,255,0.02);
+    --bs-table-hover-bg: rgba(255,255,255,0.05);
+    border-color: var(--glass-border);
+}
+.table-dark td {
+    border-color: var(--glass-border);
+    vertical-align: middle;
+}
+
+/* Accordion */
+.accordion-item {
+    background: transparent !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 8px !important;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+.accordion-button {
+    background: rgba(30, 41, 59, 0.5) !important;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+.accordion-button:not(.collapsed) {
+    background: rgba(99, 102, 241, 0.1) !important;
+    color: #a855f7 !important;
+}
+.accordion-button::after {
+    filter: invert(1);
+}
+.accordion-body {
+    background: rgba(15, 23, 42, 0.3);
+    color: #cbd5e1;
+}
+
+/* Navbar links */
+.nav-link {
+    color: #cbd5e1 !important;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.nav-link:hover, .nav-link.active {
+    color: #a855f7 !important;
+}
+
+.custom-toggler {
+    background-color: rgba(255,255,255,0.1);
+}
