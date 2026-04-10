@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Fake News Detection</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg nav-glass custom-navbar fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-white" href="/">
+      <i class="bi bi-shield-check"></i> FakeNews Verifier
+    </a>
+    <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-toggle="target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Detector</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/dashboard">Admin Dashboard</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container main-content pt-5 mt-5">
+    <div class="row mb-5 text-center text-white">
+        <h2 class="display-6 fw-bold">Admin Dashboard</h2>
+        <p class="lead text-white-50">System Metrics & Trusted Source Management</p>
+    </div>
+
+    <!-- Metrics Cards -->
+    <div class="row mb-5 animate-up">
+        <div class="col-md-3 mb-3">
+            <div class="card glass-card text-center p-3 h-100">
+                <h5 class="text-white-50">Articles Analyzed</h5>
+                <h2 class="text-white fw-bold mb-0" id="metric-articles">-</h2>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card glass-card text-center p-3 h-100">
+                <h5 class="text-white-50">System Accuracy</h5>
+                <h2 class="text-white fw-bold mb-0" id="metric-accuracy">-</h2>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card glass-card text-center p-3 h-100">
+                <h5 class="text-white-50">Uptime</h5>
+                <h2 class="text-white fw-bold mb-0 text-success" id="metric-uptime">-</h2>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card glass-card text-center p-3 h-100">
+                <h5 class="text-white-50">Active Users</h5>
+                <h2 class="text-white fw-bold mb-0" id="metric-users">-</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Manage Sources -->
+        <div class="col-lg-8 mx-auto animate-up delay-1">
+            <div class="card glass-card p-4">
+                <h4 class="text-white fw-bold mb-4">Trusted Fact-Check Sources</h4>
+                
+                <form id="add-source-form" class="mb-4 d-flex gap-2">
+                    <input type="text" class="form-control glass-input" id="new-source-input" placeholder="e.g. PolitiFact" required>
+                    <button type="submit" class="btn btn-primary gradient-btn px-4">Add</button>
+                </form>
+
+                <ul class="list-group list-group-flush bg-transparent" id="sources-list">
+                    <!-- Injected dynamically -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>
+    // Initialize dashboard specific logic
+    document.addEventListener('DOMContentLoaded', () => {
+        if(document.getElementById('metric-articles')){
+            loadMetrics();
+            loadSources();
+        }
+    });
+</script>
+</body>
+</html>
