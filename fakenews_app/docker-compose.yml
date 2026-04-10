@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8501:8501"
+    environment:
+      - GOOGLE_FACTCHECK_API_KEY=AIzaSyDU2rJC20__oHREahn2gD9t1xbJEQIAjhk

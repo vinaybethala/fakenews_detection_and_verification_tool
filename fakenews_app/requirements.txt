@@ -1,0 +1,9 @@
+streamlit
+transformers
+torch
+requests
+python-dotenv
+pytest
+spacy
+plotly
+pandas

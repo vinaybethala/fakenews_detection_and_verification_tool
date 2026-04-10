@@ -1,0 +1,149 @@
+[
+    {
+        "timestamp": "2026-04-05T12:13:33.938491",
+        "label": "FAKE",
+        "confidence": 0.9801703095436096,
+        "source": "BBC",
+        "char_length": 36
+    },
+    {
+        "timestamp": "2026-04-05T12:16:37.725648",
+        "label": "FAKE",
+        "confidence": 0.9720359444618225,
+        "source": "BBC",
+        "char_length": 28
+    },
+    {
+        "timestamp": "2026-04-05T12:31:13.937302",
+        "label": "REAL",
+        "confidence": 0.91761714220047,
+        "source": "BBC",
+        "char_length": 2066
+    },
+    {
+        "timestamp": "2026-04-05T12:34:46.489608",
+        "label": "REAL",
+        "confidence": 0.91761714220047,
+        "source": "BBC",
+        "char_length": 2066
+    },
+    {
+        "timestamp": "2026-04-05T12:41:10.748652",
+        "label": "REAL",
+        "confidence": 0.91761714220047,
+        "source": "BBC",
+        "char_length": 2066
+    },
+    {
+        "timestamp": "2026-04-05T12:48:15.510373",
+        "label": "FAKE",
+        "confidence": 0.9995871186256409,
+        "source": "BBC",
+        "char_length": 1606
+    },
+    {
+        "timestamp": "2026-04-06T17:48:46.399391",
+        "label": "FAKE",
+        "confidence": 0.9994745850563049,
+        "source": "Unknown",
+        "char_length": 1035
+    },
+    {
+        "timestamp": "2026-04-06T17:48:55.099447",
+        "label": "FAKE",
+        "confidence": 0.9994745850563049,
+        "source": "BBC",
+        "char_length": 1035
+    },
+    {
+        "timestamp": "2026-04-06T19:41:56.177380",
+        "label": "FAKE",
+        "confidence": 0.9984338879585266,
+        "source": "BBC",
+        "char_length": 987
+    },
+    {
+        "timestamp": "2026-04-06T19:57:51.736279",
+        "label": "FAKE",
+        "confidence": 0.9984338879585266,
+        "source": "BBC",
+        "char_length": 987
+    },
+    {
+        "timestamp": "2026-04-06T20:00:20.411119",
+        "label": "FAKE",
+        "confidence": 0.9984338879585266,
+        "source": "BBC",
+        "char_length": 987
+    },
+    {
+        "timestamp": "2026-04-07T20:25:11.287653",
+        "label": "REAL",
+        "confidence": 0.9900425672531128,
+        "source": "BBC",
+        "char_length": 167
+    },
+    {
+        "timestamp": "2026-04-07T20:26:19.215697",
+        "label": "REAL",
+        "confidence": 0.9900425672531128,
+        "source": "BBC",
+        "char_length": 167
+    },
+    {
+        "timestamp": "2026-04-08T19:22:23.980634",
+        "label": "FAKE",
+        "confidence": 0.8592567443847656,
+        "source": "BBC",
+        "char_length": 3923
+    },
+    {
+        "timestamp": "2026-04-08T19:26:53.216619",
+        "label": "REAL",
+        "confidence": 0.853803277015686,
+        "source": "BBC",
+        "char_length": 1381
+    },
+    {
+        "timestamp": "2026-04-08T20:21:53.766277",
+        "label": "FAKE",
+        "confidence": 0.9967376589775085,
+        "source": "BBC",
+        "char_length": 3578
+    },
+    {
+        "timestamp": "2026-04-08T20:26:48.602768",
+        "label": "FAKE",
+        "confidence": 0.9967376589775085,
+        "source": "BBC",
+        "char_length": 3578
+    },
+    {
+        "timestamp": "2026-04-09T13:26:55.414359",
+        "label": "FAKE",
+        "confidence": 0.7984548211097717,
+        "source": "BBC",
+        "char_length": 1111
+    },
+    {
+        "timestamp": "2026-04-09T13:42:39.953277",
+        "label": "FAKE",
+        "confidence": 0.7984548211097717,
+        "source": "BBC",
+        "char_length": 1111
+    },
+    {
+        "timestamp": "2026-04-09T13:44:27.130328",
+        "label": "FAKE",
+        "confidence": 0.7984548211097717,
+        "source": "BBC",
+        "char_length": 1111
+    },
+    {
+        "timestamp": "2026-04-09T13:46:52.135064",
+        "label": "REAL",
+        "confidence": 0.8230142593383789,
+        "source": "BBC",
+        "char_length": 581
+    }
+]
