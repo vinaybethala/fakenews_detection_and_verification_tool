@@ -1,0 +1,29 @@
+[
+    {
+        "text": "Israel steps up strikes on Lebanon and Hezbollah attacks continue as talks loom 18 minutes ago Share Save Add as preferred on Google Samantha Granville Beirut EPA Three women dressed in black and in grief in a group together in the foreground of the picture, at a funeral procession in Sidon of members of the Lebanese State Security Forces killed by Israel 110426EPA More than 2,000 people have been killed in Lebanon by Israeli attacks since the start of last month Israeli air strikes and Hezbolla...",
+        "prediction": "FAKE",
+        "actual": "REAL",
+        "feedback": "Good",
+        "rating": 5,
+        "sentiment": "Positive",
+        "timestamp": "2026-04-13T21:24:48.001239"
+    },
+    {
+        "text": "Israel steps up strikes on Lebanon and Hezbollah attacks continue as talks loom 18 minutes ago Share Save Add as preferred on Google Samantha Granville Beirut EPA Three women dressed in black and in grief in a group together in the foreground of the picture, at a funeral procession in Sidon of members of the Lebanese State Security Forces killed by Israel 110426EPA More than 2,000 people have been killed in Lebanon by Israeli attacks since the start of last month Israeli air strikes and Hezbolla...",
+        "prediction": "FAKE",
+        "actual": "REAL",
+        "feedback": "good news thanks",
+        "rating": 4,
+        "sentiment": "Positive",
+        "timestamp": "2026-04-13T21:30:06.505018"
+    },
+    {
+        "text": "UK GDP Chancellor Rachel Reeves predicts stronger growth this year after UK economy ends 2025 in the slow lane  business live",
+        "prediction": "REAL",
+        "actual": "REAL",
+        "feedback": "good",
+        "rating": 5,
+        "sentiment": "Positive",
+        "timestamp": "2026-04-13T21:36:58.347145"
+    }
+]

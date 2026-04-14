@@ -145,5 +145,75 @@
         "confidence": 0.8230142593383789,
         "source": "BBC",
         "char_length": 581
+    },
+    {
+        "timestamp": "2026-04-10T19:17:58.036475",
+        "label": "FAKE",
+        "confidence": 0.9985659718513489,
+        "source": "BBC",
+        "char_length": 1540
+    },
+    {
+        "timestamp": "2026-04-10T19:29:59.529485",
+        "label": "FAKE",
+        "confidence": 0.9985659718513489,
+        "source": "BBC",
+        "char_length": 1540
+    },
+    {
+        "timestamp": "2026-04-10T19:35:57.090844",
+        "label": "REAL",
+        "confidence": 0.8230142593383789,
+        "source": "BBC",
+        "char_length": 581
+    },
+    {
+        "timestamp": "2026-04-10T19:37:33.696445",
+        "label": "REAL",
+        "confidence": 0.8230142593383789,
+        "source": "NDTV",
+        "char_length": 581
+    },
+    {
+        "timestamp": "2026-04-13T19:43:42.037789",
+        "label": "FAKE",
+        "confidence": 0.7763006091117859,
+        "source": "BBC",
+        "char_length": 1833
+    },
+    {
+        "timestamp": "2026-04-13T19:47:16.558821",
+        "label": "REAL",
+        "confidence": 0.9771076440811157,
+        "source": "BBC",
+        "char_length": 125
+    },
+    {
+        "timestamp": "2026-04-13T20:17:40.173184",
+        "label": "FAKE",
+        "confidence": 0.7763006091117859,
+        "source": "BBC",
+        "char_length": 1833
+    },
+    {
+        "timestamp": "2026-04-13T20:19:28.757370",
+        "label": "FAKE",
+        "confidence": 0.7763006091117859,
+        "source": "BBC",
+        "char_length": 1833
+    },
+    {
+        "timestamp": "2026-04-13T21:23:00.880284",
+        "label": "FAKE",
+        "confidence": 0.7763006091117859,
+        "source": "BBC",
+        "char_length": 1833
+    },
+    {
+        "timestamp": "2026-04-13T21:33:59.165344",
+        "label": "REAL",
+        "confidence": 0.9771076440811157,
+        "source": "theguardian",
+        "char_length": 125
     }
 ]

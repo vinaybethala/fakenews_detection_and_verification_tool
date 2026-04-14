@@ -19,6 +19,7 @@ from services.explain import explain_prediction
 from services.source_checker import check_source_trust
 from services.factcheck import fact_check_claims, get_api_key
 from services.admin_manager import log_analysis, load_sources, add_source, remove_source, get_logs, get_analytics
+from services.feedback_manager import save_feedback, load_feedback
 
 logger = get_logger(__name__)
 
@@ -173,6 +174,12 @@ def init_session_state():
         st.session_state.is_admin_authenticated = False
     if "admin_api_key" not in st.session_state:
         st.session_state.admin_api_key = ""
+    if "has_results" not in st.session_state:
+        st.session_state.has_results = False
+    if "results" not in st.session_state:
+        st.session_state.results = {}
+    if "show_feedback_form" not in st.session_state:
+        st.session_state.show_feedback_form = False
 
 def admin_login():
     st.subheader("Admin Login")
@@ -200,7 +207,7 @@ def render_admin_dashboard():
 
     st.sidebar.button("Logout", on_click=do_logout)
 
-    tab1, tab2, tab3 = st.tabs(["API Key Config", "Manage Sources", "Activity Analytics"])
+    tab1, tab2, tab3, tab4 = st.tabs(["API Key Config", "Manage Sources", "Activity Analytics", "User Feedback"])
 
     with tab1:
         st.subheader("Google Fact Check API Key Config")
@@ -324,6 +331,55 @@ def render_admin_dashboard():
         else:
             st.info("No activity logged yet.")
 
+    with tab4:
+        st.header("User Feedback Analytics")
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        feedbacks = load_feedback()
+        if not feedbacks:
+            st.info("No user feedback collected yet.")
+        else:
+            total_feedback = len(feedbacks)
+            pos_count = sum(1 for f in feedbacks if f.get("sentiment") == "Positive")
+            neg_count = sum(1 for f in feedbacks if f.get("sentiment") == "Negative")
+            neu_count = sum(1 for f in feedbacks if f.get("sentiment") == "Neutral")
+            
+            col_f1, col_f2, col_f3 = st.columns(3)
+            col_f1.metric("Total Feedback Count", total_feedback)
+            col_f2.metric("Positive Reviews", pos_count)
+            col_f3.metric("Negative Reviews", neg_count)
+            
+            st.markdown("<br>", unsafe_allow_html=True)
+            
+            pie_data_f = pd.DataFrame({
+                "Sentiment": ["Positive", "Negative", "Neutral"],
+                "Count": [pos_count, neg_count, neu_count]
+            })
+            pie_data_f = pie_data_f[pie_data_f["Count"] > 0]
+            
+            if not pie_data_f.empty:
+                fig_pie_f = px.pie(
+                    pie_data_f, 
+                    names="Sentiment", 
+                    values="Count", 
+                    title="Sentiment Distribution",
+                    color="Sentiment",
+                    color_discrete_map={"Positive": "#16A34A", "Negative": "#DC2626", "Neutral": "#6b7280"}
+                )
+                fig_pie_f.update_layout(margin=dict(t=40, b=0, l=0, r=0))
+                st.plotly_chart(fig_pie_f, use_container_width=True)
+            
+            if neg_count > 0:
+                st.markdown("<br>", unsafe_allow_html=True)
+                st.subheader("Actionable Insights")
+                with st.expander("View Negative Feedback"):
+                    for f in feedbacks:
+                        if f.get("sentiment") == "Negative":
+                            st.write(f"**Timestamp:** {f.get('timestamp')}")
+                            st.write(f"**Predicted:** {f.get('prediction')} | **Actual:** {f.get('actual')}")
+                            st.write(f"**Feedback:** {f.get('feedback')}")
+                            st.markdown("---")
+
 
 def render_user_mode():
     inject_custom_css()
@@ -344,11 +400,13 @@ def render_user_mode():
         
     st.markdown("<br>", unsafe_allow_html=True)
     
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        analyze_clicked = st.button("Analyze")
+    analyze_clicked = st.button("Analyze")
 
-    if not analyze_clicked:
+    if analyze_clicked:
+        st.session_state.has_results = False
+        st.session_state.show_feedback_form = False
+
+    if not analyze_clicked and not st.session_state.get("has_results", False):
         st.markdown("""
             <div class="custom-footer">
                 Built using NLP &bull; Transformers &bull; Fact Check API
@@ -356,41 +414,63 @@ def render_user_mode():
         """, unsafe_allow_html=True)
         return
 
-    if not article_text.strip():
-        st.error("Please provide article text before clicking Analyze.")
-        return
-
-    with st.spinner("Analyzing..."):
-        try:
-            cleaned_text = clean_text(article_text)
-            if not cleaned_text:
-                st.error("The text could not be processed. Please try again.")
-                return
-
-            claims = extract_claims(cleaned_text)
-            prediction = classify_text(cleaned_text)
-            label = prediction.get("label", "ERROR")
-            confidence = prediction.get("confidence", 0.0)
-
-            if label == "ERROR":
-                st.error("An error occurred during classification. Please try again.")
-                return
-
-            explanation = explain_prediction(cleaned_text, prediction, claims)
-            source_trust = check_source_trust(source_name)
-            fact_check_results = fact_check_claims(claims)
-
-            log_analysis(
-                label=label,
-                confidence=confidence,
-                source_name=source_name,
-                char_length=len(cleaned_text)
-            )
-
-        except Exception:
-            logger.exception("Unexpected error during analysis.")
-            st.error("An unexpected error occurred. Please try again.")
+    if analyze_clicked:
+        if not article_text.strip():
+            st.error("Please provide article text before clicking Analyze.")
             return
+
+        with st.spinner("Analyzing..."):
+            try:
+                cleaned_text = clean_text(article_text)
+                if not cleaned_text:
+                    st.error("The text could not be processed. Please try again.")
+                    return
+
+                claims = extract_claims(cleaned_text)
+                prediction = classify_text(cleaned_text)
+                label = prediction.get("label", "ERROR")
+                confidence = prediction.get("confidence", 0.0)
+
+                if label == "ERROR":
+                    st.error("An error occurred during classification. Please try again.")
+                    return
+
+                explanation = explain_prediction(cleaned_text, prediction, claims)
+                source_trust = check_source_trust(source_name)
+                fact_check_results = fact_check_claims(claims)
+
+                log_analysis(
+                    label=label,
+                    confidence=confidence,
+                    source_name=source_name,
+                    char_length=len(cleaned_text)
+                )
+                
+                st.session_state.results = {
+                    "label": label,
+                    "confidence": confidence,
+                    "explanation": explanation,
+                    "source_trust": source_trust,
+                    "claims": claims,
+                    "fact_check_results": fact_check_results,
+                    "cleaned_text": cleaned_text
+                }
+                st.session_state.has_results = True
+
+            except Exception:
+                logger.exception("Unexpected error during analysis.")
+                st.error("An unexpected error occurred. Please try again.")
+                return
+
+    # Extract valid state results for display
+    res = st.session_state.results
+    label = res.get("label", "UNKNOWN")
+    confidence = res.get("confidence", 0.0)
+    explanation = res.get("explanation", [])
+    source_trust = res.get("source_trust", "Unknown")
+    claims = res.get("claims", [])
+    fact_check_results = res.get("fact_check_results", [])
+    cleaned_text = res.get("cleaned_text", "")
 
     st.markdown("---")
     
@@ -480,6 +560,28 @@ def render_user_mode():
             """
         fc_html += '</div>'
         st.markdown(fc_html, unsafe_allow_html=True)
+
+    # ── 6. USER FEEDBACK ─────────────────────────────────────────────────────
+    st.markdown("<br>", unsafe_allow_html=True)
+    if not st.session_state.get("show_feedback_form"):
+        if st.button("Give Feedback"):
+            st.session_state.show_feedback_form = True
+            st.rerun()
+
+    if st.session_state.get("show_feedback_form", False):
+        with st.form("feedback_form"):
+            st.subheader("We value your feedback!")
+            feedback_type = st.radio("Feedback Type", ["Prediction Correct", "Prediction Wrong"], horizontal=True)
+            actual_truth = st.radio("Actual Truth", ["Real News", "Fake News"], horizontal=True)
+            user_experience = st.text_area("User Experience", placeholder="Explain why you think the result is incorrect or correct")
+            rating = st.slider("Rating", 1, 5, 3)
+            
+            submitted_feedback = st.form_submit_button("Submit Feedback")
+            if submitted_feedback:
+                actual_val = "REAL" if actual_truth == "Real News" else "FAKE"
+                save_feedback(cleaned_text, label, actual_val, user_experience, rating)
+                st.success("Thank you for your feedback!")
+                st.session_state.show_feedback_form = False
 
     # ── FOOTER ───────────────────────────────────────────────────────────────
     st.markdown("""
