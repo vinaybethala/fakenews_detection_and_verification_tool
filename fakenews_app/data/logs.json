@@ -215,5 +215,47 @@
         "confidence": 0.9771076440811157,
         "source": "theguardian",
         "char_length": 125
+    },
+    {
+        "timestamp": "2026-04-14T14:34:41.113079",
+        "label": "FAKE",
+        "confidence": 0.9903494119644165,
+        "source": "BBC",
+        "char_length": 1835
+    },
+    {
+        "timestamp": "2026-04-14T14:36:25.952745",
+        "label": "FAKE",
+        "confidence": 0.9903494119644165,
+        "source": "BBC",
+        "char_length": 1835
+    },
+    {
+        "timestamp": "2026-04-14T15:09:32.912524",
+        "label": "FAKE",
+        "confidence": 0.9903494119644165,
+        "source": "BBC",
+        "char_length": 1835
+    },
+    {
+        "timestamp": "2026-04-23T23:26:39.119259",
+        "label": "FAKE",
+        "confidence": 0.9988701939582825,
+        "source": "BBC",
+        "char_length": 1667
+    },
+    {
+        "timestamp": "2026-04-23T23:27:59.448456",
+        "label": "FAKE",
+        "confidence": 0.9988701939582825,
+        "source": "bbc",
+        "char_length": 1667
+    },
+    {
+        "timestamp": "2026-04-23T23:28:48.019849",
+        "label": "FAKE",
+        "confidence": 0.9988701939582825,
+        "source": "bbc",
+        "char_length": 1667
     }
 ]

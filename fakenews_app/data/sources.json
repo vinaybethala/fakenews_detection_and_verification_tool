@@ -1,5 +1,4 @@
 [
-    "bbc",
     "reuters",
     "the hindu",
     "ndtv",
@@ -8,5 +7,6 @@
     "associated press",
     "al jazeera",
     "cnn",
-    "theguardian"
+    "theguardian",
+    "xyz"
 ]

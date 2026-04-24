@@ -25,5 +25,23 @@
         "rating": 5,
         "sentiment": "Positive",
         "timestamp": "2026-04-13T21:36:58.347145"
+    },
+    {
+        "text": "Founder of China's Evergrande pleads guilty to fraud 3 hours ago Share Save Add as preferred on Google Laura Bicker,China correspondentandOsmond Chia,Business reporter Bloomberg via Getty Images Hui Ka Yan, chairman of China Evergrande Group, pauses during a news conference in Hong Kong, China, on Tuesday, March 26, 2019. Bloomberg via Getty Images Hui Ka Yan, the founder of China's Evergrande Group Hui Ka Yan, the founder of embattled Chinese property developer Evergrande, has pleaded guilty to...",
+        "prediction": "FAKE",
+        "actual": "REAL",
+        "feedback": "Bad",
+        "rating": 5,
+        "sentiment": "Negative",
+        "timestamp": "2026-04-14T14:36:58.623624"
+    },
+    {
+        "text": "Ruth Slenczynska, last surviving pupil of Rachmaninoff, dies aged 101 8 hours ago Share Save Add as preferred on Google Mark Savage Music correspondent Meredith Truax Ruth Slenczynska, pictured at the age of 97, plays the piano in a wood-lined recording studioMeredith Truax Ruth Slenczynska was heralded as a child prodigy, after making her concert debut at the age of four Virtuoso pianist Ruth Slenczynska, who was the last surviving pupil of Sergei Rachmaninoff, has died at the age of 101, follo...",
+        "prediction": "FAKE",
+        "actual": "FAKE",
+        "feedback": "bad",
+        "rating": 3,
+        "sentiment": "Negative",
+        "timestamp": "2026-04-23T23:29:27.436459"
     }
 ]
