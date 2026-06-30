@@ -1,11 +1,7 @@
-version: '3.8'
-
 services:
-  web:
+  app:
     build: .
     ports:
-      - "7860:7860"
+      - "8501:8501"
     environment:
       - GOOGLE_FACTCHECK_API_KEY=${GOOGLE_FACTCHECK_API_KEY}
-    volumes:
-      - ./sources.json:/app/sources.json

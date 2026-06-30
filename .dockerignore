@@ -1,11 +1,8 @@
-venv/
-env/
-.env
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.env
+venv/
 .git/
 .gitignore
-*.jpg
-*.png
-*.log
-.DS_Store
