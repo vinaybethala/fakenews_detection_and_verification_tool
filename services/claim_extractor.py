@@ -1,7 +1,18 @@
 import re
+import spacy
+import subprocess
+import sys
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
+
+# Load SpaCy English model
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    logger.info("Downloading spacy model 'en_core_web_sm'...")
+    subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 
 def extract_claims(text: str) -> list:
     """
